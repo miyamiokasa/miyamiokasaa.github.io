@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Art Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6efe6;
+      margin: 0;
+      padding: 40px;
+    }
+
+    .title {
+      text-align: center;
+      color: #b56b6b;
+      margin-bottom: 40px;
+      font-size: 32px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #fdf6ee;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    .card p {
+      margin-top: 15px;
+      font-size: 16px;
+      color: #444;
+    }
+
+    .thoughts-section {
+      margin-top: 60px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .thought-item {
+      background: #fdf6ee;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border-left: 4px solid #b56b6b;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="title">🎨 My Art Gallery 🎨</h1>
+
+  <div class="gallery">
+    <div class="card">
+      <img src="pic1red.jpg" alt="dark Red artwork">
+      <p>the red one ❤️</p>
+      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
+      <button onclick="sendThought(this)">Send</button>
+    </div>
+
+    <div class="card">
+      <img src="IMG_4010.JPG" alt="artwork">
+      <p>Second one 🍃</p>
+      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
+      <button onclick="sendThought(this)">Send</button>
+    </div>
+
+    <div class="card">
+      <img src="pic2bluevan.jpg" alt="Blue artwork">
+      <p>idk 🌌</p>
+      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
+      <button onclick="sendThought(this)">Send</button>
+    </div>
+
+    <div class="card">
+      <img src="IMG_4012.JPG" alt="red artwork">
+      <p>just red✨</p>
+      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
+      <button onclick="sendThought(this)">Send</button>
+    </div>
+
+    <div class="card">
+      <img src="pic3blue.jpg" alt="fishiii artwork">
+      <p>idk2</p>
+      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
+      <button onclick="sendThought(this)">Send</button>
+    </div>
+
+    <div class="card">
+      <img src="IMG_4011.JPG" alt="energy artwork">
+      <p>energy wii</p>
+      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
+      <button onclick="sendThought(this)">Send</button>
+    </div>
+
+    <div class="card">
+      <img src="picimag.jpg" alt="gold artwork">
+      <p>gold vibes</p>
+      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
+      <button onclick="sendThought(this)">Send</button>
+    </div>
+
+    <div class="card">
+      <img src="IMG_3043.JPG" alt="pencil artwork">
+      <p>my favorite ✨</p>
+      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
+      <button onclick="sendThought(this)">Send</button>
+    </div>
+
+    <div class="card">
+      <img src="IMG_3772.JPG" alt="pencil artwork">
+      <p>diii drawing</p>
+      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
+      <button onclick="sendThought(this)">Send</button>
+    </div>
+
+    <div class="card">
+      <img src="IMG_E4009.JPG" alt="pencil artwork">
+      <p>...</p>
+      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
+      <button onclick="sendThought(this)">Send</button>
+    </div>
+  </div>
+
+  <div class="thoughts-section">
+    <h2>💭 All Thoughts Received</h2>
+    <div id="thoughtsList"></div>
+  </div>
+
+  <script>
+    function sendThought(button) {
+      const textarea = button.previousElementSibling;
+      const thought = textarea.value.trim();
+      
+      if (thought === "") {
+        alert("Please write something!");
+        return;
+      }
+
+      let allThoughts = JSON.parse(localStorage.getItem("thoughts")) || [];
+      allThoughts.push({
+        text: thought,
+        date: new Date().toLocaleString()
+      });
+      localStorage.setItem("thoughts", JSON.stringify(allThoughts));
+
+      textarea.value = "";
+      displayAllThoughts();
+      alert("Thought saved! ✨");
+    }
+
+    function displayAllThoughts() {
+      const thoughts = JSON.parse(localStorage.getItem("thoughts")) || [];
+      const list = document.getElementById("thoughtsList");
+      
+      list.innerHTML = "";
+      thoughts.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "thought-item";
+        div.innerHTML = `<p><strong>#${index + 1}:</strong> ${item.text}</p><small>${item.date}</small>`;
+        list.appendChild(div);
+      });
+    }
+
+    displayAllThoughts();
+  </script>
+</body>
+</html>
