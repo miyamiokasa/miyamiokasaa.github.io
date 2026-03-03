@@ -77,71 +77,91 @@
     <div class="card">
       <img src="pic1red.jpg" alt="dark Red artwork">
       <p>the red one ❤️</p>
-      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
-      <button onclick="sendThought(this)">Send</button>
+      <form action="https://formspree.io/f/xvzbjjkn" method="POST">
+      <input type="hidden" name="artwork" value="the red one">
+      <textarea name="message" placeholder="Add your thoughts..." class="thought"></textarea>
+      <button type="submit">Send</button></form>
     </div>
 
     <div class="card">
       <img src="IMG_4010.JPG" alt="artwork">
       <p>Second one 🍃</p>
-      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
-      <button onclick="sendThought(this)">Send</button>
+      <form action="https://formspree.io/f/xvzbjjkn" method="POST">
+      <input type="hidden" name="artwork" value="Second one">
+      <textarea name="message" placeholder="Add your thoughts..." class="thought"></textarea>
+      <button type="submit">Send</button></form>
     </div>
 
     <div class="card">
       <img src="pic2bluevan.jpg" alt="Blue artwork">
       <p>idk 🌌</p>
-      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
-      <button onclick="sendThought(this)">Send</button>
+      <form action="https://formspree.io/f/xvzbjjkn" method="POST">
+      <input type="hidden" name="artwork" value="idk">
+      <textarea name="message" placeholder="Add your thoughts..." class="thought"></textarea>
+      <button type="submit">Send</button></form>
     </div>
 
     <div class="card">
       <img src="IMG_4012.JPG" alt="red artwork">
       <p>just red✨</p>
-      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
-      <button onclick="sendThought(this)">Send</button>
+      <form action="https://formspree.io/f/xvzbjjkn" method="POST">
+      <input type="hidden" name="artwork" value="just red">
+      <textarea name="message" placeholder="Add your thoughts..." class="thought"></textarea>
+      <button type="submit">Send</button></form>
     </div>
 
     <div class="card">
       <img src="pic3blue.jpg" alt="fishiii artwork">
       <p>idk2</p>
-      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
-      <button onclick="sendThought(this)">Send</button>
+      <form action="https://formspree.io/f/xvzbjjkn" method="POST">
+      <input type="hidden" name="artwork" value="idk2">
+      <textarea name="message" placeholder="Add your thoughts..." class="thought"></textarea>
+      <button type="submit">Send</button></form>
     </div>
 
     <div class="card">
       <img src="IMG_4011.JPG" alt="energy artwork">
       <p>energy wii</p>
-      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
-      <button onclick="sendThought(this)">Send</button>
+      <form action="https://formspree.io/f/xvzbjjkn" method="POST">
+      <input type="hidden" name="artwork" value="energy wii">
+      <textarea name="message" placeholder="Add your thoughts..." class="thought"></textarea>
+      <button type="submit">Send</button></form>
     </div>
 
     <div class="card">
       <img src="picimag.jpg" alt="gold artwork">
       <p>gold vibes</p>
-      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
-      <button onclick="sendThought(this)">Send</button>
+     <form action="https://formspree.io/f/xvzbjjkn" method="POST">
+      <input type="hidden" name="artwork" value="gold vibes">
+      <textarea name="message" placeholder="Add your thoughts..." class="thought"></textarea>
+      <button type="submit">Send</button></form>
     </div>
 
     <div class="card">
       <img src="IMG_3043.JPG" alt="pencil artwork">
       <p>my favorite ✨</p>
-      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
-      <button onclick="sendThought(this)">Send</button>
+      <form action="https://formspree.io/f/xvzbjjkn" method="POST">
+      <input type="hidden" name="artwork" value="my favorite">
+      <textarea name="message" placeholder="Add your thoughts..." class="thought"></textarea>
+      <button type="submit">Send</button></form>
     </div>
 
     <div class="card">
       <img src="IMG_3772.JPG" alt="pencil artwork">
       <p>diii drawing</p>
-      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
-      <button onclick="sendThought(this)">Send</button>
+     <form action="https://formspree.io/f/xvzbjjkn" method="POST">
+      <input type="hidden" name="artwork" value="diii drawing">
+      <textarea name="message" placeholder="Add your thoughts..." class="thought"></textarea>
+      <button type="submit">Send</button></form>
     </div>
 
     <div class="card">
       <img src="IMG_E4009.JPG" alt="pencil artwork">
       <p>...</p>
-      <textarea placeholder="Add your thoughts..." class="thought"></textarea>
-      <button onclick="sendThought(this)">Send</button>
+      <form action="https://formspree.io/f/xvzbjjkn" method="POST">
+      <input type="hidden" name="artwork" value="...">
+      <textarea name="message" placeholder="Add your thoughts..." class="thought"></textarea>
+      <button type="submit">Send</button></form>
     </div>
   </div>
 
@@ -150,42 +170,5 @@
     <div id="thoughtsList"></div>
   </div>
 
-  <script>
-    function sendThought(button) {
-      const textarea = button.previousElementSibling;
-      const thought = textarea.value.trim();
-      
-      if (thought === "") {
-        alert("Please write something!");
-        return;
-      }
-
-      let allThoughts = JSON.parse(localStorage.getItem("thoughts")) || [];
-      allThoughts.push({
-        text: thought,
-        date: new Date().toLocaleString()
-      });
-      localStorage.setItem("thoughts", JSON.stringify(allThoughts));
-
-      textarea.value = "";
-      displayAllThoughts();
-      alert("Thought saved! ✨");
-    }
-
-    function displayAllThoughts() {
-      const thoughts = JSON.parse(localStorage.getItem("thoughts")) || [];
-      const list = document.getElementById("thoughtsList");
-      
-      list.innerHTML = "";
-      thoughts.forEach((item, index) => {
-        const div = document.createElement("div");
-        div.className = "thought-item";
-        div.innerHTML = `<p><strong>#${index + 1}:</strong> ${item.text}</p><small>${item.date}</small>`;
-        list.appendChild(div);
-      });
-    }
-
-    displayAllThoughts();
-  </script>
 </body>
 </html>
